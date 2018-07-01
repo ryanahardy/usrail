@@ -13,7 +13,7 @@ Python 2.7
   * [Pandas](https://pandas.pydata.org/)
   * [PyConcorde](https://github.com/jvkersch/pyconcorde)
   
- ## About
- 
- 
+ ## Method and Results
+ ![Solutions](https://github.com/ryanahardy/usrail/blob/master/solutions.png "Rail Network Solutions")
+ ![Scores](https://github.com/ryanahardy/usrail/blob/master/scores.png "Rail Network Scores")
 
