@@ -1,0 +1,16 @@
+GCT-PEPANNRES
+Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2017 - United States -- Metropolitan and Micropolitan Statistical Area; and for Puerto Rico
+
+Note: The estimates are based on the 2010 Census and reflect changes to the April 1, 2010
+population due to the Count Question Resolution program and geographic program revisions. All geographic boundaries for the 2017 population
+estimates series except statistical area delineations are as of January 1, 2017. The Office of Management and Budget's statistical area delineations for metropolitan, micropolitan, and combined statistical areas, as well as metropolitan divisions, are those issued by that agency in July 2015. For
+population estimates methodology statements, see 
+http://www.census.gov/programs-surveys/popest/technical-documentation/methodology.html.
+
+
+Suggested Citation: 
+Annual Estimates of the Resident Population: April 1, 2010 to July 1, 2017 
+Source: U.S. Census Bureau, Population Division 
+Release Date: March 2018
+
+
