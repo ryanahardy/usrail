@@ -2,12 +2,13 @@
 '''A demonstration of using minimum-spanning trees and traveling-salesman
 solutions to design a national rail network for the United States.'''
 
-import shapefile
-import pandas as pd
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Polygon
+import shapefile
+import pandas as pd
 import scipy.sparse.csgraph as csg
 from mpl_toolkits.basemap import Basemap
 from concorde.tsp import TSPSolver
@@ -64,12 +65,15 @@ def plot_poly(m, sf, y=None, mask=None, cmap=plt.cm.RdBu_r, vmin=None, vmax=None
 
 
 
-sf_csa = shapefile.Reader("cb_2017_us_csa_5m/cb_2017_us_csa_5m")
+#sf_csa = shapefile.Reader("cb_2017_us_csa_5m/cb_2017_us_csa_5m")
+
+#Load CBSA and US State shapefiles
+
 sf_cbsa = shapefile.Reader("cb_2017_us_cbsa_20m/cb_2017_us_cbsa_20m")
 sf_state = shapefile.Reader("cb_2017_us_state_20m/cb_2017_us_state_20m")
 m = Basemap(projection='aea', lon_0=-96, lat_0=37.5, width=5e6, height=4e6)
 
-#Compute MSA centroids
+#Isolate and compute MSA centroids
 
 metro = (np.array(sf_cbsa.records())[:, -3]=='M1')
 metro_where = np.where(metro)[0]
@@ -91,14 +95,14 @@ visible = (x_c < m.xmax)*(x_c > m.xmin)*(y_c < m.ymax)*(y_c > m.ymin)
 centroids = centroids[visible]
 nmsa = len(centroids)
 
-#csapop = pd.read_csv("PEP_2017_GCTPEPANNR.US41PR/PEP_2017_GCTPEPANNR.US41PR_with_ann.csv")
+#Load CBSA populations and match with shapefiles
 csapop = pd.read_csv("PEP_2017_GCTPEPANNR.US23PR/PEP_2017_GCTPEPANNR.US23PR_with_ann.csv")
 ref = np.where(np.matrix(np.array(sf_cbsa.records())[:, 3][metro][visible]).T==np.matrix(csapop['GC.target-geo-id2'].ix[2:].values))[1]
-
 pop = np.array(csapop['respop72017'].ix[2:].values[ref], int)
 
+#Compute intercity geographic distance matrix
 dmat = np.zeros((nmsa, nmsa))
-R = 6371.
+R = 6371. #km, radius of Earth
 for i in range(nmsa):
     dmat[i] = R*np.arccos(np.sin(centroids[i, 1]*np.pi/180)*np.sin(centroids[:, 1]*np.pi/180)+np.cos(centroids[i, 1]*np.pi/180)*np.cos(centroids[:, 1]*np.pi/180)*np.cos((centroids[i, 0]-centroids[:, 0])*np.pi/180))
 dmat[dmat!=dmat] = 0
@@ -149,7 +153,7 @@ plt.xticks(np.arange(4), np.array(names)[[2, 3, 0, 1]], weight='bold')
 plt.savefig("scores")
 
 
-
+#Plot maps
 plt.figure(figsize=(12.5, 10))
 for j in range(3):
     plt.subplot(2, 2, [3, 4, 1][j])
