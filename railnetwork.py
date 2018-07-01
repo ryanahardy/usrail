@@ -189,4 +189,4 @@ m.scatter(centroids[:, 0], centroids[:, 1], s= np.array(pop, int)/1e5, latlon=Tr
 plt.axis('off')
 plt.subplots_adjust(left=0, hspace=0, wspace=0, right=1, top=0.95, bottom=0)
 plt.savefig("solutions")
-plt.savefig("solutions", format='pdf')
+plt.savefig("solutions.pdf", format='pdf')
