@@ -69,8 +69,8 @@ def plot_poly(m, sf, y=None, mask=None, cmap=plt.cm.RdBu_r, vmin=None, vmax=None
 
 #Load CBSA and US State shapefiles
 
-sf_cbsa = shapefile.Reader("cb_2017_us_cbsa_20m/cb_2017_us_cbsa_20m")
-sf_state = shapefile.Reader("cb_2017_us_state_20m/cb_2017_us_state_20m")
+sf_cbsa = shapefile.Reader("data/cb_2017_us_cbsa_20m/cb_2017_us_cbsa_20m")
+sf_state = shapefile.Reader("data/cb_2017_us_state_20m/cb_2017_us_state_20m")
 m = Basemap(projection='aea', lon_0=-96, lat_0=37.5, width=5e6, height=4e6)
 
 #Isolate and compute MSA centroids
@@ -96,7 +96,7 @@ centroids = centroids[visible]
 nmsa = len(centroids)
 
 #Load CBSA populations and match with shapefiles
-csapop = pd.read_csv("PEP_2017_GCTPEPANNR.US23PR/PEP_2017_GCTPEPANNR.US23PR_with_ann.csv")
+csapop = pd.read_csv("data/PEP_2017_GCTPEPANNR.US23PR/PEP_2017_GCTPEPANNR.US23PR_with_ann.csv")
 ref = np.where(np.matrix(np.array(sf_cbsa.records())[:, 3][metro][visible]).T==np.matrix(csapop['GC.target-geo-id2'].ix[2:].values))[1]
 pop = np.array(csapop['respop72017'].ix[2:].values[ref], int)
 
