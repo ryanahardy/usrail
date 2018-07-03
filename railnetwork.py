@@ -18,7 +18,7 @@ __copyright__ = "2018, Ryan A. Hardy"
 __credits__ = ["Ryan A. Hardy"]
 __license__ = "MIT"
 __version__ = "1.0"
-__maintainer__ = "Rob Knight"
+__maintainer__ = "Ryan Hardy"
 __email__ = "hardy.r@gmail.com"
 __status__ = "Development"
 
